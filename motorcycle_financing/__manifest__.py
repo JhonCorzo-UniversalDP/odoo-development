@@ -7,7 +7,7 @@
     'website': 'https://github.com/JhonCorzo-UniversalDP/odoo-development',
     'author': "Jhon Jairo Corzo Calderon",
     'license': 'OPL-1',
-    'depends': [],
+    # 'depends': [],
 	# ​'data': [],
 	​'demo': [
         'data/loan_demo.xml'
