@@ -9,6 +9,8 @@
     'license': 'OPL-1',
     'depends': [],
 	# ​'data': [],
-	# ​'demo': [],
+	​'demo': [
+        'data/loan_demo.xml'
+    ],
     'application': True,
 }
