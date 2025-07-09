@@ -8,7 +8,7 @@
     'author': "Jhon Jairo Corzo Calderon",
     'license': 'OPL-1',
     'depends': [],
-	​'data': [],
-	​'demo': [],
+	# ​'data': [],
+	# ​'demo': [],
     'application': True,
 }
