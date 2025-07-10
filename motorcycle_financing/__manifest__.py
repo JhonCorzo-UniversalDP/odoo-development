@@ -10,7 +10,9 @@
     # 'depends': [],
 	'data': [
         # Security
-
+        'security/motorcycle_financing_groups.xml',
+        'security/ir.model.access.csv',
+        'security/rules.xml',
         # Views
         'views/loan_application_views.xml',
         'views/motorcycle_financing_menu.xml',
