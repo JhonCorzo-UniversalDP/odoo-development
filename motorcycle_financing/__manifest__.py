@@ -8,9 +8,10 @@
     'author': "Jhon Jairo Corzo Calderon",
     'license': 'OPL-1',
     # 'depends': [],
-	# ​'data': [],
-	​'demo': [
+	'data': [
         'data/loan_demo.xml'
     ],
+    # 'demo': [
+    # ],
     'application': True,
 }
