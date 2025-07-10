@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="root_level" name="Motorcycle Financing" web_icon="motorcycle_financing,static/description/icon.png" sequence="10"/>
+    <menuitem id="second_level" name="Loan Application" parent="root_level" sequence="10"/>
+    <menuitem id="third_level" name="Loan Application" parent="second_level" sequence="10" action="test_record"/>
+</odoo>
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
