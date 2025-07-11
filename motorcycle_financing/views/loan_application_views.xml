@@ -14,10 +14,32 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
-                <field name="currency_id"/>
-                <field name="date_application"/>
+                <field name="loan_amount"/>
+                <field name="down_payment"/>
+                <field name="interest_rate"/>
+                <field name="loan_term"/>
+                <field string="Applied On" name="date_application"/>
+                <field string="Approved On" name="date_approval" optional="hide"/>
+                <field string="Rejected On" name="date_rejection" optional="hide"/>
+                <field string="Signed On" name="date_signed" optional="hide"/>
             </list>
         </field>
+    </record>
+
+    <record id="loan_application_search_view" model="ir.ui.view">
+        <field name="name">loan.application.search</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <search string="Loan">
+                <filter string="Now" name="now" domain="[('date_application','>=', (context_today() - datetime.timedelta(days=3)).strftime('%Y-%m-%d'))]" />
+                <filter string="Offer Approved" name="offer_approved" domain="[('state','=', 'approved')]"/>
+                <filter string="Application Date" name="date_application_filter" date="date_application"/>
+                <group string="Group By" expand="1">
+                    <filter string="Application Date" name="date_application" context="{'group_by':'date_application'}"/>
+                    <filter string="State" name="state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field> 
     </record>
 
     <!-- Vista de formulario para el modelo de loan.application -->

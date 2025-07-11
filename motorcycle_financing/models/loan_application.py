@@ -18,7 +18,7 @@ class LoanApplication(models.Model):
     
     date_application = fields.Date(
         string='Application Date', 
-        readonly=True, 
+        # readonly=True, 
         copy=False
     )
     
