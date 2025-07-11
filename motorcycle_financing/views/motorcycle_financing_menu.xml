@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="root_level" name="Motorcycle Financing" web_icon="motorcycle_financing,static/description/icon.png" sequence="10"/>
-    <menuitem id="second_level" name="Loan Application" parent="root_level" sequence="10"/>
-    <menuitem id="third_level" name="Loan Application" parent="second_level" sequence="10" action="test_record"/>
+    <menuitem id="motorcycle_financing_root" name="Motorcycle Financing" web_icon="motorcycle_financing,static/description/icon.png" sequence="10"/>
+    <menuitem id="motorcycle_financing_app_menu" name="Loan Application" parent="motorcycle_financing_root" sequence="10"/>
+    <menuitem id="motorcycle_financing_loan" name="Loan" parent="motorcycle_financing_app_menu" sequence="10" action="loan_application_action"/>
 </odoo>
