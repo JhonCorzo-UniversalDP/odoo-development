@@ -1,6 +1,6 @@
     <odoo>
-    <data>
-        <record id="loan_01" model="loan.application">
+    <data noupdate="1">
+        <record id="loan_01" model="loan.application" no>
             <field name="name">Pedro Ramirez - Ukko 2024</field>
             <field name="interest_rate">0.056</field>
             <field name="loan_amount">15000</field>
