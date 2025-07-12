@@ -88,6 +88,25 @@ class LoanApplication(models.Model):
         string='Notes',
         copy=False
     )
-    
+
+    partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Customer'
+    )
+
+    sale_order_id = fields.Many2one(
+        comodel_name='sale.order',
+        string='Related Sale Order' 
+    )
+
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Salesperson'
+    )
+
+    product_template_id = fields.Many2one(
+        comodel_name='product.product',
+        string='Product'
+    )
     
     

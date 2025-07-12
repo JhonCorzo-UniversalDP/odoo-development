@@ -3,4 +3,9 @@
     <menuitem id="motorcycle_financing_root" name="Motorcycle Financing" web_icon="motorcycle_financing,static/description/icon.png" sequence="10"/>
     <menuitem id="motorcycle_financing_app_menu" name="Loan Application" parent="motorcycle_financing_root" sequence="10"/>
     <menuitem id="motorcycle_financing_loan" name="Loan" parent="motorcycle_financing_app_menu" sequence="10" action="loan_application_action"/>
+
+    <menuitem id="motorcycle_financing_conf_menu" name="Settings" parent="motorcycle_financing_root" sequence="20"/>
+    <menuitem id="motorcycle_financing_tag" name="Tags" parent="motorcycle_financing_conf_menu" sequence="10" action="loan_application_tag_action"/>
+
+    
 </odoo>

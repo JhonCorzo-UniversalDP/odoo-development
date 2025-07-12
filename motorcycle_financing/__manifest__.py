@@ -7,7 +7,7 @@
     'website': 'https://github.com/JhonCorzo-UniversalDP/odoo-development',
     'author': "Jhon Jairo Corzo Calderon",
     'license': 'OPL-1',
-    # 'depends': [],
+    'depends': ['sale'],
 	'data': [
         # Security
         'security/motorcycle_financing_groups.xml',
@@ -15,6 +15,7 @@
         'security/rules.xml',
         # Views
         'views/loan_application_views.xml',
+        'views/loan_application_tag_views.xml',
         'views/motorcycle_financing_menu.xml',
 
         # Menus
@@ -26,3 +27,12 @@
     # ],
     'application': True,
 }
+
+# ? 1. Crear Modelo
+# ? 2. Crear grupos y reglas de acceso
+# ? 3. Crear acciones
+# ? 3. Crear menus
+# ? 4. Crear vistas
+# ? 5. Actualizar manifiesto
+
+

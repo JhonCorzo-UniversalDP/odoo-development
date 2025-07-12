@@ -26,6 +26,7 @@
         </field>
     </record>
 
+    <!-- Barra de busqueda y filtros, para las vistas que no sean form -->
     <record id="loan_application_search_view" model="ir.ui.view">
         <field name="name">loan.application.search</field>
         <field name="model">loan.application</field>
@@ -52,12 +53,17 @@
                 
                     <div class="oe_title"> <!-- Asigna el espacio del titulo --> 
                         <label for="name" string="Loan"/> <!-- Label encima cuando tiene h1 -->
-                        <h1>
+                        <h1> 
                             <field name="name" placeholder="e.g Loan Juan"/>
                         </h1>
                     </div>
                     <group>
-                        <group string="Customer Info"></group>
+                        <group string="Customer Info">
+                            <field name="user_id" />
+                            <field name="sale_order_id" />
+                            <field name="product_template_id" />
+                            <field name="partner_id" />
+                        </group>
                         <group string="Loan Info">
                             <field name="down_payment"/>
                             <field name="loan_amount"/>
