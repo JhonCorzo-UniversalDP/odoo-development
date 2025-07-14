@@ -78,7 +78,7 @@ class LoanApplication(models.Model):
             ('approved', 'Approved'), 
             ('rejected', 'Rejected'), 
             ('signed', 'Signed'), 
-            ('cancel', 'Canceled')\
+            ('cancel', 'Canceled')
         ], 
         default='draft',
         copy=False

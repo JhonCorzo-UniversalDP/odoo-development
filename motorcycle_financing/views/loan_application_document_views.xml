@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Acción para definir vistas disponibles al dar click en un menu o boton del modelo loan.application  -->
+    <record id="loan_application_document_action" model="ir.actions.act_window">
+        <field name="name">Loan Application Documents</field>
+        <field name="res_model">loan.application.document</field>
+        <!-- El orden indica cual es la vista que será mostrada primero al realizar la acción -->
+        <field name="view_mode">list</field> 
+    </record>
+
+</odoo>
