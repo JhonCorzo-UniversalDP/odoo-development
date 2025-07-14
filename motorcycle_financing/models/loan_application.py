@@ -108,5 +108,11 @@ class LoanApplication(models.Model):
         comodel_name='product.product',
         string='Product'
     )
+
+    documentation_ids = fields.One2many(
+        comodel_name = 'loan.application.document',
+        inverse_name = 'application_id',
+        string = 'Documentation'
+    )
     
     

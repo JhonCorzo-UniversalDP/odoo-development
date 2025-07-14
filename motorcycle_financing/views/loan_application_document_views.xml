@@ -7,4 +7,32 @@
         <field name="view_mode">list</field> 
     </record>
 
+    <record id="loan_application_document_form_view" model="ir.ui.view">
+        <field name="name">loan.application.document.view.form</field>
+        <field name="model">loan.application.document</field>
+        <field name="arch" type="xml">
+            <form string="Loan Application Document Form">
+                <sheet>
+                    <div class="oe_title"> <!-- Asigna el espacio del titulo --> 
+                        <label for="name" string="Document Name"/> <!-- Label encima cuando tiene h1 -->
+                        <h1> 
+                            <field name="name" placeholder="e.g C.V. Juan Perez"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="application_id" />
+                            <field name="state" />
+                            <field name="type_id" />
+                            <field name="attachment" />
+                        </group>
+                        <group></group>
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    
+    </record>
+
 </odoo>

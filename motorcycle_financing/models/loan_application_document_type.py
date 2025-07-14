@@ -11,6 +11,6 @@ class LoanApplicationDocumentType(models.Model):
     )
 
     active = fields.Boolean(
-        string = "Tags",
+        string = "Active",
         default = True
     )

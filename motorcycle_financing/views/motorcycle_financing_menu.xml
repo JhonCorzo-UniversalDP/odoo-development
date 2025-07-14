@@ -6,7 +6,7 @@
     <menuitem id="motorcycle_financing_document" name="Documents" parent="motorcycle_financing_app_menu" sequence="20" action="loan_application_document_action"/>
 
     <menuitem id="motorcycle_financing_conf_menu" name="Settings" parent="motorcycle_financing_root" sequence="20"/>
-    <menuitem id="motorcycle_financing_tag" name="Tags" parent="motorcycle_financing_conf_menu" sequence="10" action="loan_application_tag_action"/>
-    <menuitem id="motorcycle_financing_document_type" name="Document Type" parent="motorcycle_financing_conf_menu" sequence="20" action="loan_application_document_type_action"/>
+    <menuitem id="motorcycle_financing_tag" name="Loan Tags" parent="motorcycle_financing_conf_menu" sequence="10" action="loan_application_tag_action"/>
+    <menuitem id="motorcycle_financing_document_type" name="Document Types" parent="motorcycle_financing_conf_menu" sequence="20" action="loan_application_document_type_action"/>
 
 </odoo>

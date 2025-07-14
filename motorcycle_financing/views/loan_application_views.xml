@@ -74,6 +74,9 @@
                     </group>
 
                     <notebook>
+                        <page string="Documentation" name="documentation">
+                            <field name="documentation_ids" />
+                        </page>
                         <page string="Notes" name="notes">
                             <field name="notes" placeholder="Write your notes..."/>
                         </page>
