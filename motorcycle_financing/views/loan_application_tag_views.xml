@@ -1,0 +1,23 @@
+<odoo>
+    <!-- Acción para definir vistas disponibles al dar click en un menu o boton del modelo loan.application  -->
+    <record id="loan_application_tag_action" model="ir.actions.act_window">
+        <field name="name">Loan Application Tag</field>
+        <field name="res_model">loan.application.tag</field>
+        <!-- El orden indica cual es la vista que será mostrada primero al realizar la acción -->
+        <field name="view_mode">list</field> 
+    </record>
+
+    <record id="loan_application_tag_list_view" model="ir.ui.view"> 
+        <field name="name">loan.application.tag.view.form</field>
+        <field name="model">loan.application.tag</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name" />
+                <field name="color" widget="color_picker"/>
+            </list>
+        </field>
+    
+    
+    </record>
+
+</odoo>

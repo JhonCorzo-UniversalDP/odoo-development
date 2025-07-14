@@ -1,0 +1,106 @@
+<odoo>
+    <!-- Acción para definir vistas disponibles al dar click en un menu o boton del modelo loan.application  -->
+    <record id="loan_application_action" model="ir.actions.act_window">
+        <field name="name">Loan</field>
+        <field name="res_model">loan.application</field>
+        <!-- El orden indica cual es la vista que será mostrada primero al realizar la acción -->
+        <field name="view_mode">list,form</field> 
+    </record>
+
+    <!-- Vista de Lista para el modelo loan.application -->
+    <record id="loan_application_list_view" model="ir.ui.view">
+        <field name="name">loan.application.view.list</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="loan_amount"/>
+                <field name="down_payment"/>
+                <field name="interest_rate"/>
+                <field name="loan_term"/>
+                <field string="Applied On" name="date_application"/>
+                <field string="Approved On" name="date_approval" optional="hide"/>
+                <field string="Rejected On" name="date_rejection" optional="hide"/>
+                <field string="Signed On" name="date_signed" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Barra de busqueda y filtros, para las vistas que no sean form -->
+    <record id="loan_application_search_view" model="ir.ui.view">
+        <field name="name">loan.application.search</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <search string="Loan">
+                <filter string="Now" name="now" domain="[('date_application','>=', (context_today() - datetime.timedelta(days=3)).strftime('%Y-%m-%d'))]" />
+                <filter string="Offer Approved" name="offer_approved" domain="[('state','=', 'approved')]"/>
+                <filter string="Application Date" name="date_application_filter" date="date_application"/>
+                <group string="Group By" expand="1">
+                    <filter string="Application Date" name="date_application" context="{'group_by':'date_application'}"/>
+                    <filter string="State" name="state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field> 
+    </record>
+
+    <!-- Vista de formulario para el modelo de loan.application -->
+    <record id="loan_application_form_view" model="ir.ui.view">
+        <field name="name">loan.application.view.form</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <form string="String Form">
+                <sheet>
+                
+                    <div class="oe_title"> <!-- Asigna el espacio del titulo --> 
+                        <label for="name" string="Loan"/> <!-- Label encima cuando tiene h1 -->
+                        <h1> 
+                            <field name="name" placeholder="e.g Loan Juan"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Customer Info">
+                            <field name="user_id" />
+                            <field name="sale_order_id" />
+                            <field name="product_template_id" />
+                            <field name="partner_id" />
+                        </group>
+                        <group string="Loan Info">
+                            <field name="down_payment"/>
+                            <field name="loan_amount"/>
+                            <field name="currency_id"/>
+                            <field name="interest_rate"/>
+                            <field name="loan_term"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Documentation" name="documentation">
+                            <field name="documentation_ids" />
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Write your notes..."/>
+                        </page>
+                        <page string="Rejection Details" name="rejection_details">
+                            <field name="rejection_reason" placeholder="Write your rejection details..."/>
+                        </page>
+                        <page string="Date Log" name="date_log">
+                            <group>
+                                <group>
+                                    <field name="date_application"/>
+                                    <field name="date_approval"/>
+                                </group>
+                                <group>
+                                    <field name="date_rejection"/>
+                                    <field name="date_signed"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo> 
