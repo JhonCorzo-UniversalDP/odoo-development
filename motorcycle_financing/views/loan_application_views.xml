@@ -59,13 +59,14 @@
                     </div>
                     <group>
                         <group string="Customer Info">
-                            <field name="user_id" />
                             <field name="sale_order_id" />
-                            <field name="product_template_id" />
                             <field name="partner_id" />
+                            <field name="user_id" />
+                            <field name="product_template_id" />
                         </group>
                         <group string="Loan Info">
                             <field name="down_payment"/>
+                            <field name="sale_order_total"/>
                             <field name="loan_amount"/>
                             <field name="currency_id"/>
                             <field name="interest_rate"/>
