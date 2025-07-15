@@ -24,13 +24,30 @@
                             <field name="application_id" />
                             <field name="state" />
                             <field name="type_id" />
-                            <field name="attachment" />
+                            <field name="attachment"/>
                         </group>
                         <group></group>
                     </group>
                     
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="loan_application_document_list_view" model="ir.ui.view">
+        <field name="name">loan.application.document.view.list</field>
+        <field name="model">loan.application.document</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="attachment" widget="binary"/>
+                <field name="type_id"/>
+                <field name="state" widget="badge" decoration-success="state == 'approved'" decoration-danger="state == 'rejected'" decoration-muted="state == 'new'"/>
+                <button type='object' name='action_approve' icon='fa-check' string="Approve" invisible='state == "approved"'/>
+                <button type='object' name='action_reject' icon='oi-close' string="Reject" invisible='state == "rejected"'/>
+
+            </list>
         </field>
     
     </record>
