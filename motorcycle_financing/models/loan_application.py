@@ -8,6 +8,7 @@ class LoanApplication(models.Model):
     _description = 'Loan Application'
     _logger = logging.getLogger(__name__)
     
+    #region Loan Application fields
     name = fields.Char(
         string='Name', 
         required=True
@@ -160,7 +161,22 @@ class LoanApplication(models.Model):
         comodel_name = 'loan.application.tag',
         string = 'Tags'
     )
+    #endregion
 
+    #region Validations
+    _sql_constraints = [
+        ('down_payment_is_positive', 'CHECK(down_payment >= 0)', "The down payment can't be zero nor negative")
+    ]
+
+    @api.constrains('down_payment', 'sale_order_total')
+    def _check_down_payment(self):
+        for record in self:
+            if(record.down_payment >= record.sale_order_total):
+                raise ValidationError("The down payment can't be equal or greater than the total amount")
+    
+    #endregion
+
+    #region Button Actions
     def sent_for_approval(self):
         for record in self:
             # self._logger.info(f"Documentos {record.documentation_ids}")
@@ -183,6 +199,7 @@ class LoanApplication(models.Model):
         for record in self:
             if record.state == 'rejected' and not record.rejection_reason:
                 raise ValidationError("Please add the rejection details")
-            
+    
+    #endregion
     
     

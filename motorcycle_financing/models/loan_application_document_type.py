@@ -14,3 +14,7 @@ class LoanApplicationDocumentType(models.Model):
         string = "Active",
         default = True
     )
+
+    _sql_constraints = [
+        ("name_is_unique", "UNIQUE(name)", "The document type name must be unique")
+    ]

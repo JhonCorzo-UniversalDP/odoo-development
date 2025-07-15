@@ -13,3 +13,7 @@ class LoanApplicationTag(models.Model):
         string = "Color", 
         required = True
     )
+
+    _sql_constraints = [
+        ("name_is_unique", "UNIQUE(name)", "The tag name must be unique")
+    ]
