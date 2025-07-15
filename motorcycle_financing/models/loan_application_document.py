@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError
 class LoanApplicationDocument(models.Model):
     _name = 'loan.application.document'
     _description = 'Loan Application Document'
+    _order = "sequence asc"
 
     sequence = fields.Integer(default=10)
 

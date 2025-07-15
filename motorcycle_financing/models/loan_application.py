@@ -6,6 +6,7 @@ import logging
 class LoanApplication(models.Model):
     _name = 'loan.application'
     _description = 'Loan Application'
+    _order = 'date_application desc, name'
     _logger = logging.getLogger(__name__)
     
     #region Loan Application fields
@@ -110,10 +111,10 @@ class LoanApplication(models.Model):
             ('draft', 'Draft'), 
             ('sent', 'Sent'), 
             ('review', 'Credit Check'), 
-            ('approved', 'Approved'), 
-            ('rejected', 'Rejected'), 
             ('signed', 'Signed'), 
-            ('cancel', 'Canceled')
+            ('approved', 'Approved'), 
+            ('cancel', 'Canceled'),
+            ('rejected', 'Rejected')
         ], 
         default='draft',
         copy=False
@@ -173,7 +174,6 @@ class LoanApplication(models.Model):
         for record in self:
             if(record.down_payment >= record.sale_order_total):
                 raise ValidationError("The down payment can't be equal or greater than the total amount")
-    
     #endregion
 
     #region Button Actions
