@@ -1,8 +1,11 @@
-from odoo import fields, models
+from odoo import fields, models, api
+from odoo.exceptions import ValidationError
 
 class LoanApplicationDocument(models.Model):
     _name = 'loan.application.document'
     _description = 'Loan Application Document'
+
+    sequence = fields.Integer(default=10)
 
     name = fields.Char(
         string = "Documents",
@@ -39,3 +42,15 @@ class LoanApplicationDocument(models.Model):
         default = 'new',
         copy = False
     )
+
+    def action_approve(self):
+        # Actualizar state
+        self.write({'state': 'approved'})
+
+    def action_reject(self):
+        # Actualizar state
+        self.write({'state': 'rejected'})
+
+    @api.onchange('name','application_id','attachment', 'type_id')
+    def _onchange_required_fields(self):
+        self.state = "new"

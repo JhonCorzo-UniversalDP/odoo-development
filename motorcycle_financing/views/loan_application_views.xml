@@ -51,6 +51,9 @@
         <field name="arch" type="xml">
             <form string="String Form">
                 <header>
+                    <button name="sent_for_approval" string="Send" type="object" />
+                    <button name="approve_application" string="Approve Loan" type="object" />
+                    <button name="reject_application" string="Reject Loan" type="object" />
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

@@ -1,9 +1,12 @@
+import datetime
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+import logging
 
 class LoanApplication(models.Model):
     _name = 'loan.application'
     _description = 'Loan Application'
-
+    _logger = logging.getLogger(__name__)
     
     name = fields.Char(
         string='Name', 
@@ -53,7 +56,7 @@ class LoanApplication(models.Model):
     
     down_payment = fields.Monetary(
         string='Downpayment', 
-        currency_field='currency_id', 
+        currency_field='currency_id',
         required=True
     )
     
@@ -66,15 +69,17 @@ class LoanApplication(models.Model):
     # ? Extraer el total de la venta, desde la orden de venta 
     sale_order_total = fields.Monetary(
         related = 'sale_order_id.amount_total',
-        string = 'Sale Order Total'
-        # currency_field = 'currency_id'
+        string = 'Sale Order Total',
+        currency_field = 'currency_id'
     )
 
 
     # ? Calcular restando el anticipo total del pedidio (down_payment) de la venta (sale_order_total)
     loan_amount = fields.Monetary(
         compute = '_calculate_loan_amount',
-        string = 'Loan Amount'
+        string = 'Loan Amount',
+        currency_field='currency_id'
+
     )
 
     @api.depends('sale_order_total', 'down_payment')
@@ -150,5 +155,34 @@ class LoanApplication(models.Model):
         inverse_name = 'application_id',
         string = 'Documentation'
     )
+
+    tags = fields.Many2many(
+        comodel_name = 'loan.application.tag',
+        string = 'Tags'
+    )
+
+    def sent_for_approval(self):
+        for record in self:
+            # self._logger.info(f"Documentos {record.documentation_ids}")
+            has_pending_docs = any(doc.state != 'approved' for doc in record.documentation_ids)
+            
+            if has_pending_docs:
+                raise ValidationError("The Loan Application has rejected or new documents")
+            else:
+                self.write({'state': 'sent'})
+
+    def approve_application(self):
+        self.write({'state': 'approved'})
+        self.write({'date_approval': datetime.datetime.now()})
+
+    def reject_application(self):
+        self.write({'state': 'rejected'})
+
+    @api.constrains('state', 'rejection_reason')
+    def _check_empty_rejection_reason(self):
+        for record in self:
+            if record.state == 'rejected' and not record.rejection_reason:
+                raise ValidationError("Please add the rejection details")
+            
     
     
