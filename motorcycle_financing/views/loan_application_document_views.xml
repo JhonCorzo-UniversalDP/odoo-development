@@ -37,7 +37,7 @@
         <field name="name">loan.application.document.view.list</field>
         <field name="model">loan.application.document</field>
         <field name="arch" type="xml">
-            <list>
+            <list editable="bottom">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="attachment" widget="binary"/>
