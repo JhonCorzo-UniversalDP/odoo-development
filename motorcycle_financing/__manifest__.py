@@ -25,7 +25,7 @@
         # Menus
 
         # Data
-        'data/loan_demo.xml'
+        # 'data/loan_demo.xml'
     ],
     # 'demo': [
     # ],
