@@ -49,8 +49,7 @@
         <field name="name">loan.application.view.form</field>
         <field name="model">loan.application</field>
         <field name="arch" type="xml">
-            <form string="String Form" edit="state != 'sent'">
-            <!-- <form string="String Form" edit='is_editable'> -->
+            <form string="String Form">
                 <header>
                     <button name="sent_for_approval" string="Send" type="object" invisible='state == "approved"'/>
                     <button name="approve_application" string="Approve Loan" type="object" invisible='state == "approved"' />

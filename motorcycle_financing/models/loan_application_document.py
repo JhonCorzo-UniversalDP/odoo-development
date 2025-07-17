@@ -11,7 +11,6 @@ class LoanApplicationDocument(models.Model):
     name = fields.Char(
         string = "Documents",
         copy = False,
-        required = True
     )
 
     application_id = fields.Many2one(
@@ -24,7 +23,6 @@ class LoanApplicationDocument(models.Model):
         attachment = True,
         string = "Attachment",
         copy = False,
-        required = True
     )
 
     type_id = fields.Many2one(

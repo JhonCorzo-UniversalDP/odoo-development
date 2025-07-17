@@ -149,6 +149,7 @@ class LoanApplication(models.Model):
 
     product_template_id = fields.Many2one(
         comodel_name='product.product',
+        related = 'sale_order_id.order_line.product_id',
         string='Product'
     )
 
@@ -174,6 +175,39 @@ class LoanApplication(models.Model):
         for record in self:
             if(record.down_payment >= record.sale_order_total):
                 raise ValidationError("The down payment can't be equal or greater than the total amount")
+    #endregion
+
+    #region Methods
+
+    @api.depends('partner_id', 'product_template_id')
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = f'{record.partner_id.name} {"" if not record.product_template_id else "-" } {"" if not record.product_template_id else record.product_template_id.name }'
+
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        self._create_documents_foreach_type(records)
+
+        return records
+
+    def _create_documents_foreach_type(self, records):
+        document_types = self.env["loan.application.document.type"].search([('active', '=', True)])
+        record_documents = []
+
+        for record in records:
+            for doc_type in document_types:
+                record_documents.append(
+                    {
+                        "name": f"{record.partner_id.name} - {doc_type.name}",
+                        "application_id": record.id,
+                        "type_id": doc_type.id
+                    }
+                )
+        
+        if record_documents:
+            self.env['loan.application.document'].create(record_documents)
     #endregion
 
     #region Button Actions
