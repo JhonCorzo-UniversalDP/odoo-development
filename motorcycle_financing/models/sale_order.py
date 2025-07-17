@@ -48,8 +48,6 @@ class SaleOrder(models.Model):
 
         if(not is_valid):
             raise UserError(message)
-
-
         
         return {
             'type': 'ir.actions.act_window',
@@ -63,4 +61,3 @@ class SaleOrder(models.Model):
         }
 
         # TODO: Revisar error cuando usuario sin permisos en Motorcycle Financing entra a una Quotation
-        # TODO: Revisar del 3.2.4 en adelante, basarse en logica del metodo apply_loan

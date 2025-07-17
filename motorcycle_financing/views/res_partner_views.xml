@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_partner_form_inherit_loan" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.loan</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_partner_invoices']" position="after">
+                <button type="object" class="oe_stat_button" icon="fa-bank" name="action_view_applications">
+                    <field string="Loan Application Count" name="application_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>    
+    </record>
+
+</odoo>

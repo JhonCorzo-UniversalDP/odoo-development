@@ -8,7 +8,8 @@ class LoanApplication(models.Model):
     _description = 'Loan Application'
     _order = 'date_application desc, name'
     _logger = logging.getLogger(__name__)
-    
+    _inherit = ['mail.thread', 'mail.activity.mixin'
+    ]  
     #region Loan Application fields
     name = fields.Char(
         string='Name', 
@@ -17,7 +18,8 @@ class LoanApplication(models.Model):
 
     sale_order_id = fields.Many2one(
         comodel_name='sale.order',
-        string='Related Sale Order' 
+        string='Related Sale Order',
+        tracking = True
     )
 
     # ? Extraer currency_id, desde la orden de venta
@@ -59,7 +61,8 @@ class LoanApplication(models.Model):
     down_payment = fields.Monetary(
         string='Downpayment', 
         currency_field='currency_id',
-        required=True
+        required=True,
+        tracking = True
     )
     
     interest_rate = fields.Float(
@@ -117,7 +120,8 @@ class LoanApplication(models.Model):
             ('rejected', 'Rejected')
         ], 
         default='draft',
-        copy=False
+        copy=False,
+        tracking = True
     )
 
     notes = fields.Html(
