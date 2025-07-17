@@ -44,7 +44,7 @@ class SaleOrder(models.Model):
     def apply_loan(self):
         self.ensure_one()
 
-        is_valid, message = record.can_apply_loan()
+        is_valid, message = self.can_apply_loan()
 
         if(not is_valid):
             raise UserError(message)
