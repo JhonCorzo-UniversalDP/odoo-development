@@ -175,6 +175,17 @@ class LoanApplication(models.Model):
         for record in self:
             if(record.down_payment >= record.sale_order_total):
                 raise ValidationError("The down payment can't be equal or greater than the total amount")
+
+    @api.constrains('sale_order_id')
+    def _check_saler_order(self):
+        self.ensure_one()
+        is_valid, message = self.sale_order_id.can_apply_loan()
+
+        if(not is_valid):
+            raise ValidationError(message)
+
+    
+
     #endregion
 
     #region Methods
@@ -188,6 +199,12 @@ class LoanApplication(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
+
+        # Actualizar is_financed en sale.order
+        for record in records:
+            if record.sale_order_id:
+                record.sale_order_id.write({'is_financed': True})
+
         self._create_documents_foreach_type(records)
 
         return records

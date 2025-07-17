@@ -70,14 +70,14 @@
                     <group col="3">
                         <group colspan="2" string="Customer Info">
                             <field name="sale_order_id" options="{'no_create': True}"  readonly="state == 'sent'"/>
-                            <field name="partner_id"  readonly="state == 'sent'"/>
-                            <field name="user_id"  readonly="state == 'sent'"/>    
-                            <field name="product_template_id"  options="{'no_create': True}"  readonly="state == 'sent'"/>
+                            <field name="partner_id"  readonly="True"/>
+                            <field name="user_id"  readonly="True"/>    
+                            <field name="product_template_id"  options="{'no_create': True}"  readonly="True"/>
                         </group>
                         <group colspan="1" string="Loan Info">
                             <field widget="monetary" name="down_payment" options="{'currency_field': 'currency_id'}"  readonly="state == 'sent'"/>
-                            <field widget="monetary" name="sale_order_total"  readonly="state == 'sent'"/>
-                            <field widget="monetary" name="loan_amount" options="{'currency_field': 'currency_id'}"  readonly="state == 'sent'"/>
+                            <field widget="monetary" name="sale_order_total" readonly="True"/>
+                            <field widget="monetary" name="loan_amount" options="{'currency_field': 'currency_id'}"  readonly="True"/>
                             <field name="currency_id"  readonly="state == 'sent'"/>
                             <field name="interest_rate" widget="percentage"  readonly="state == 'sent'"/>
                             <field name="loan_term"  readonly="state == 'sent'"/>

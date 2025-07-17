@@ -5,10 +5,10 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_quotation_send']" position="after">
-                <button name="apply_loan" string="Apply Loan" type="object" invisible="state != 'draft'" class="btn-primary"/>
+                <button name="apply_loan" string="Apply Loan" type="object" invisible="state != 'draft' or not is_financed" class="btn-primary"/>
             </xpath>
 
-            <xpath expr="//field[@name='state']" position="attributes">
+            <xpath expr="//field[@name='state']"  position="attributes">
                 <attribute name="statusbar_visible">draft,sent,sale,loan_pending,done</attribute>
             </xpath>
 
@@ -17,7 +17,7 @@
             </xpath>
 
             <xpath expr="//page[@name='order_lines']" position="after">
-                <page string="Loan Applications" name="loan_application_ids">
+                <page string="Loan Applications" invisible="not is_financed" name="loan_application_ids">
                     <field name="loan_application_id"/>
                 </page>
             </xpath>
